@@ -125,18 +125,17 @@
             </button>
         </form>
 
-        <a class=" flex items-center space-x-2 py-1 mt-4" href="#">
-            <div class="relative inline-block w-10 mr-2 align-middle select-none transition duration-200 ease-in">
-                <input type="checkbox" name="toggle" id="toggle"
-                    class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 border-gray-300 appearance-none cursor-pointer"
-                    @click="isDark = !isDark" :value="isDark" />
-                <label for="toggle"
-                    class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
-            </div>
-            <label for="toggle" class="">Dark Theme</label>
-        </a>
-
-
-    </div><!-- /Menu -->
+        <div class="flex items-center space-x-2 py-1 mt-4">
+            <button @click="isDark = !isDark" type="button"
+                class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-300 focus:outline-none"
+                :class="isDark ? 'bg-white border border-gray-300' : 'bg-gray-300'">
+                <span class="sr-only">Toggle Dark Mode</span>
+                <span class="inline-block h-4 w-4 transform rounded-full transition-transform duration-300"
+                    :class="isDark ? 'translate-x-6 bg-gray-800' : 'translate-x-1 bg-white'"></span>
+            </button>
+            <span class="text-gray-700 dark:text-gray-300">Dark Theme</span>
+        </div>
+    </div>
+    <!-- /Menu -->
 
 </aside><!-- /Left Sidebar -->
