@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" :class="isDark ? 'dark' : 'light'" x-data="{ isDark: false }">
 
 <head>
     <meta charset="UTF-8">
     <title>@yield('title', 'Dashboard')</title>
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/style.css'])
 </head>
 
 <body class="font-sans text-sm bg-white dark:bg-zinc-900">
