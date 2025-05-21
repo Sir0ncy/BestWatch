@@ -30,3 +30,4 @@ class CreateMoviesTable extends Migration
         Schema::dropIfExists('movies');
     }
 }
+//r

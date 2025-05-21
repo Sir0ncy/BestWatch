@@ -21,3 +21,4 @@ class CreateMovieGenreTable extends Migration
         Schema::dropIfExists('movie_genre');
     }
 }
+//r

@@ -20,3 +20,4 @@ class CreateTypesTable extends Migration
         Schema::dropIfExists('types');
     }
 }
+//r

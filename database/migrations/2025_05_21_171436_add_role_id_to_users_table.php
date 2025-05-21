@@ -20,3 +20,5 @@ class AddRoleIdToUsersTable extends Migration
         });
     }
 }
+
+//r
