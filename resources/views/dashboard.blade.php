@@ -37,7 +37,7 @@
 
         <section class="mt-9">
             <div class="flex items-center justify-between">
-                <span class="font-semibold text-gray-700 text-base dark:text-white">Similar Movies</span>
+                <span class="font-semibold text-gray-700 text-base dark:text-white">Movie List</span>
                 <div class="flex items-center space-x-2 fill-gray-500">
                     <svg class="h-7 w-7 rounded-full border p-1 hover:border-red-600 hover:fill-red-600 dark:fill-white dark:hover:fill-red-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <path d="M13.293 6.293L7.58 12l5.7 5.7 1.41-1.42 -4.3-4.3 4.29-4.293Z"></path>
