@@ -10,3 +10,4 @@ BestWatch is a web application built with Laravel and Tailwind CSS that helps us
 - Responsive layout with dark mode
 - Built with Laravel, Blade templates, Tailwind CSS, and Vite
 
+Test Helga
