@@ -22,6 +22,7 @@ class User extends Authenticatable
         'username',
         'email',
         'password',
+        'role_id',
     ];
 
     /**
@@ -45,5 +46,13 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function role() {
+        $this->belongsTo(Role::class, 'roles');
+    }
+
+    public function movies() {
+        return $this->belongsToMany(Movie::class, 'user_movies')->withPivot('status');
     }
 }
