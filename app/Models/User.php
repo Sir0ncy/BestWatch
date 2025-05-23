@@ -55,4 +55,8 @@ class User extends Authenticatable
     public function movies() {
         return $this->belongsToMany(Movie::class, 'user_movies')->withPivot('status');
     }
+
+    public function isAdmin(): bool {
+        return $this->role_id === 1;
+    }
 }
