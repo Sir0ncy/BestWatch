@@ -24,11 +24,25 @@
         </a>
         <a class="flex items-center space-x-2 py-1 group hover:border-r-4 hover:border-r-red-600 hover:font-semibold dark:hover:text-white"
             href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-5 w-5 group-hover:stroke-red-600">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                stroke="currentColor" class="h-5 w-5 group-hover:stroke-red-600">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
             </svg>
             <span>My List</span>
         </a>
+        @if (auth()->user() && auth()->user()->isAdmin())
+            <a class="flex items-center space-x-2 py-1 group hover:border-r-4 hover:border-r-red-600 hover:font-semibold dark:hover:text-white"
+                href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:fill-red-600" viewBox="0 0 24 24"
+                    fill="currentColor">
+                    <path
+                        d="M4 4.5A1.5 1.5 0 0 1 5.5 3h13a1.5 1.5 0 0 1 1.5 1.5V6H4V4.5ZM4 7h16v11.5a1.5 1.5 0 0 1-1.5 1.5H5.5A1.5 1.5 0 0 1 4 18.5V7Zm2.28-3 1.5 3h2.34l-1.5-3H6.28Zm4 0 1.5 3h2.34l-1.5-3h-2.34Zm4 0 1.5 3h2.94V4.5a.5.5 0 0 0-.5-.5h-3.94Z" />
+                </svg>
+                <span>Manage Movie</span>
+            </a>
+        @endif
+
 
         <div class="mt-8 text-gray-400/70 font-medium uppercase">General</div>
         <a class="flex items-center space-x-2 py-1 group hover:border-r-4 hover:border-r-red-600 hover:font-semibold dark:hover:text-white"
