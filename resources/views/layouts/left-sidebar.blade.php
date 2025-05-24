@@ -12,34 +12,52 @@
 
     <!-- Menu -->
     <div class="mt-12 flex flex-col gap-y-4 text-gray-500 fill-gray-500 text-sm">
-        <div class="text-gray-400/70 font-medium uppercase">Menu</div>
-        <a class="flex items-center space-x-2 py-1 dark:text-white font-semibold border-r-4 border-r-red-600 pr-20"
-            href="#">
-            <svg class="h-5 w-5 fill-red-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <!-- Common Menu Items -->
+        <a class="flex items-center space-x-2 py-1 {{ request()->routeIs('home') ? 'dark:text-white font-semibold border-r-4 border-r-red-600 pr-20' : 'group hover:border-r-4 hover:border-r-red-600 hover:font-semibold dark:hover:text-white' }}"
+            href="{{ route('dashboard') }}">
+            <svg class="h-5 w-5 {{ request()->routeIs('home') ? 'fill-red-600' : 'group-hover:fill-red-600' }}"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <!-- Home icon -->
                 <path
                     d="M5 22h14v0c1.1 0 2-.9 2-2v-9 0c0-.27-.11-.53-.29-.71l-8-8v0c-.4-.39-1.02-.39-1.41 0l-8 8h0c-.2.18-.3.44-.3.71v9 0c0 1.1.89 2 2 2Zm5-2v-5h4v5Zm-5-8.59l7-7 7 7V20h-3v-5 0c0-1.11-.9-2-2-2h-4v0c-1.11 0-2 .89-2 2v5H5Z">
                 </path>
             </svg>
             <span>Home</span>
         </a>
-        <a class="flex items-center space-x-2 py-1 group hover:border-r-4 hover:border-r-red-600 hover:font-semibold dark:hover:text-white"
-            href="#">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="h-5 w-5 group-hover:stroke-red-600">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
-            </svg>
-            <span>My List</span>
-        </a>
-        @if (auth()->user() && auth()->user()->isAdmin())
-            <a class="flex items-center space-x-2 py-1 group hover:border-r-4 hover:border-r-red-600 hover:font-semibold dark:hover:text-white"
-                href="#">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:fill-red-600" viewBox="0 0 24 24"
-                    fill="currentColor">
-                    <path
-                        d="M4 4.5A1.5 1.5 0 0 1 5.5 3h13a1.5 1.5 0 0 1 1.5 1.5V6H4V4.5ZM4 7h16v11.5a1.5 1.5 0 0 1-1.5 1.5H5.5A1.5 1.5 0 0 1 4 18.5V7Zm2.28-3 1.5 3h2.34l-1.5-3H6.28Zm4 0 1.5 3h2.34l-1.5-3h-2.34Zm4 0 1.5 3h2.94V4.5a.5.5 0 0 0-.5-.5h-3.94Z" />
+
+        @auth
+            <a class="flex items-center space-x-2 py-1 {{ request()->routeIs('my-list') ? 'dark:text-white font-semibold border-r-4 border-r-red-600 pr-20' : 'group hover:border-r-4 hover:border-r-red-600 hover:font-semibold dark:hover:text-white' }}"
+                href="{{ route('my-list') }}">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor"
+                    class="h-5 w-5 {{ request()->routeIs('my-list') ? 'stroke-red-600' : 'group-hover:stroke-red-600' }}">
+                    <!-- Star icon -->
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M11.48 3.499a.562.562 0 0 1 1.04 0l2.125 5.111a.563.563 0 0 0 .475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 0 0-.182.557l1.285 5.385a.562.562 0 0 1-.84.61l-4.725-2.885a.562.562 0 0 0-.586 0L6.982 20.54a.562.562 0 0 1-.84-.61l1.285-5.386a.562.562 0 0 0-.182-.557l-4.204-3.602a.562.562 0 0 1 .321-.988l5.518-.442a.563.563 0 0 0 .475-.345L11.48 3.5Z" />
                 </svg>
-                <span>Manage Movie</span>
+                <span>My List</span>
+            </a>
+        @endauth
+        @if (auth()->check() && auth()->user()->isAdmin())
+            <div class="text-gray-400/70 font-medium uppercase mt-8">Admin</div>
+
+            <a class="flex items-center space-x-2 py-1 {{ request()->routeIs('movies.*') ? 'dark:text-white font-semibold border-r-4 border-r-red-600 pr-20' : 'group hover:border-r-4 hover:border-r-red-600 hover:font-semibold dark:hover:text-white' }}"
+                href="{{ route('movies.index') }}">
+                <svg class="h-5 w-5 {{ request()->routeIs('movies.*') ? 'fill-red-600' : 'group-hover:fill-red-600' }}"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z" />
+                    <path d="M14 17H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
+                </svg>
+                <span>Manage Movies</span>
+            </a>
+
+            <a class="flex items-center space-x-2 py-1 {{ request()->routeIs('genres.*') ? 'dark:text-white font-semibold border-r-4 border-r-red-600 pr-20' : 'group hover:border-r-4 hover:border-r-red-600 hover:font-semibold dark:hover:text-white' }}"
+                href="{{ route('genres.index') }}">
+                <svg class="h-5 w-5 {{ request()->routeIs('genres.*') ? 'fill-red-600' : 'group-hover:fill-red-600' }}"
+                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M11 15H6l7-14v8h5l-7 14v-8z" />
+                </svg>
+                <span>Manage Genres</span>
             </a>
         @endif
 

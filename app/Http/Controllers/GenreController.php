@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Genre;
 
 class GenreController extends Controller
 {
@@ -12,6 +13,12 @@ class GenreController extends Controller
     public function index()
     {
         //
+        if (!auth()->user()->isAdmin()) {
+            abort(403, 'Unauthorized');
+        }
+
+        $genres = Genre::all(); // pakai model Genre
+        return view('genres', compact('genres'));
     }
 
     /**
