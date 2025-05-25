@@ -27,6 +27,9 @@ class GenreController extends Controller
     public function create()
     {
         //
+           $this->authorizeAdmin();
+
+            return view('genres.create');
     }
 
     /**
@@ -35,6 +38,17 @@ class GenreController extends Controller
     public function store(Request $request)
     {
         //
+        $this->authorizeAdmin();
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        Genre::create([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->route('genres.index')->with('success', 'Genre created successfully.');
     }
 
     /**
@@ -43,6 +57,7 @@ class GenreController extends Controller
     public function show(string $id)
     {
         //
+        
     }
 
     /**
@@ -51,6 +66,10 @@ class GenreController extends Controller
     public function edit(string $id)
     {
         //
+        $this->authorizeAdmin();
+
+        $genre = Genre::findOrFail($id);
+        return view('genres.edit', compact('genre'));
     }
 
     /**
@@ -59,6 +78,18 @@ class GenreController extends Controller
     public function update(Request $request, string $id)
     {
         //
+           $this->authorizeAdmin();
+
+        $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        $genre = Genre::findOrFail($id);
+        $genre->update([
+            'name' => $request->name,
+        ]);
+
+        return redirect()->route('genres.index')->with('success', 'Genre updated successfully.');
     }
 
     /**
@@ -67,5 +98,18 @@ class GenreController extends Controller
     public function destroy(string $id)
     {
         //
+         $this->authorizeAdmin();
+
+        $genre = Genre::findOrFail($id);
+        $genre->delete();
+
+        return redirect()->route('genres.index')->with('success', 'Genre deleted successfully.');
+    }
+
+      private function authorizeAdmin()
+    {
+        if (!auth()->user() || !auth()->user()->isAdmin()) {
+            abort(403, 'Unauthorized');
+        }
     }
 }

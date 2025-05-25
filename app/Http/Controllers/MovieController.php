@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Movie;
 use App\Models\Genre;
+use App\Models\Type;
 
 class MovieController extends Controller
 {
@@ -33,7 +34,8 @@ class MovieController extends Controller
         }
 
         $types = \App\Models\Type::all();
-        return view('movies.create', compact('types'));
+        $genres = Genre::all();
+        return view('movies.create', compact('types','genre'));
     }
 
     /**
@@ -47,12 +49,13 @@ class MovieController extends Controller
         }
 
         $validated = $request->validate([
-            'title' => 'required',
-            'image_url' => 'nullable',
-            'description' => 'nullable',
+            'title' => 'required|string|max:255',
+            'image_url' => 'nullable|string',
+            'description' => 'nullable|string',
             'imdb_score' => 'nullable|numeric',
-            'trailer_url' => 'nullable',
-            'type_id' => 'required|integer',
+            'trailer_url' => 'nullable|string',
+            'type_id' => 'required|exists:types,id',
+            'genre_id' => 'required|exists:genres,id',
             'release_year' => 'required|integer',
             'duration' => 'nullable|integer',
             'total_episode' => 'nullable|integer',
@@ -83,8 +86,9 @@ class MovieController extends Controller
 
         $movie = Movie::findOrFail($id);
         $genres = Genre::all();
+        $types = Type::all();
 
-        return view('movies.edit', compact('movie', 'genres'));
+        return view('movies.edit', compact('movie', 'genres', 'types'));
     }
 
     /**
@@ -100,9 +104,16 @@ class MovieController extends Controller
         $movie = Movie::findOrFail($id);
 
         $validated = $request->validate([
-            'title' => 'required|string|max:255',
+             'title' => 'required|string|max:255',
+            'image_url' => 'nullable|string',
+            'description' => 'nullable|string',
+            'imdb_score' => 'nullable|numeric',
+            'trailer_url' => 'nullable|string',
+            'type_id' => 'required|exists:types,id',
             'genre_id' => 'required|exists:genres,id',
-            'year' => 'required|integer|min:1900|max:' . (date('Y') + 1),
+            'release_year' => 'required|integer',
+            'duration' => 'nullable|integer',
+            'total_episode' => 'nullable|integer',
         ]);
 
         $movie->update($validated);
