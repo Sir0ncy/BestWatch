@@ -15,15 +15,17 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             RoleSeeder::class,
+            AdminUserSeeder::class,
+            UserSeeder::class,
         ]);
 
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'username' => 'testuser',
-            'email' => 'test@example.com',
-            'role_id' => 2,
-        ]);
+        // User::factory()->create([
+        //     'name' => 'Test User',
+        //     'username' => 'testuser',
+        //     'email' => 'test@example.com',
+        //     'role_id' => 2,
+        // ]);
     }
 }

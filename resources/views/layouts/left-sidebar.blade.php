@@ -11,7 +11,7 @@
     </div>
 
     <!-- Menu -->
-    <div class="mt-12 flex flex-col gap-y-4 text-gray-500 fill-gray-500 text-sm">
+    <div class="mt-12 flex flex-col gap-y-4  text-gray-500 fill-gray-500 text-sm">
         <!-- Common Menu Items -->
         <a class="flex items-center space-x-2 py-1 {{ request()->routeIs('home') ? 'dark:text-white font-semibold border-r-4 border-r-red-600 pr-20' : 'group hover:border-r-4 hover:border-r-red-600 hover:font-semibold dark:hover:text-white' }}"
             href="{{ route('dashboard') }}">

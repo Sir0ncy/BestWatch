@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Movie;
 use App\Models\Genre;
 use App\Models\Type;
+use Illuminate\Routing\Controller;
 
 class MovieController extends Controller
 {
@@ -14,11 +15,6 @@ class MovieController extends Controller
      */
     public function index()
     {
-        //
-        if (!auth()->user()->isAdmin()) {
-            abort(403, 'Unauthorized');
-        }
-
         $movies = Movie::with('type')->get();
         return view('movies.movies', compact('movies'));
     }
@@ -28,14 +24,9 @@ class MovieController extends Controller
      */
     public function create()
     {
-        //
-        if (!auth()->user()->isAdmin()) {
-            abort(403, 'Unauthorized');
-        }
-
         $types = \App\Models\Type::all();
         $genres = Genre::all();
-        return view('movies.create', compact('types','genre'));
+        return view('movies.create', compact('types', 'genres'));
     }
 
     /**
@@ -43,11 +34,6 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        if (!auth()->user()->isAdmin()) {
-            abort(403, 'Unauthorized');
-        }
-
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'image_url' => 'nullable|string',
@@ -79,11 +65,6 @@ class MovieController extends Controller
      */
     public function edit(string $id)
     {
-        //
-        if (!auth()->user()->isAdmin()) {
-            abort(403, 'Unauthorized');
-        }
-
         $movie = Movie::findOrFail($id);
         $genres = Genre::all();
         $types = Type::all();
@@ -96,15 +77,10 @@ class MovieController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
-        if (!auth()->user()->isAdmin()) {
-            abort(403, 'Unauthorized');
-        }
-
         $movie = Movie::findOrFail($id);
 
         $validated = $request->validate([
-             'title' => 'required|string|max:255',
+            'title' => 'required|string|max:255',
             'image_url' => 'nullable|string',
             'description' => 'nullable|string',
             'imdb_score' => 'nullable|numeric',
@@ -126,11 +102,6 @@ class MovieController extends Controller
      */
     public function destroy(string $id)
     {
-        //
-        if (!auth()->user()->isAdmin()) {
-            abort(403, 'Unauthorized');
-        }
-
         $movie = Movie::findOrFail($id);
         $movie->delete();
 
