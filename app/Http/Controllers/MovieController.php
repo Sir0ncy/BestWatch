@@ -16,7 +16,8 @@ class MovieController extends Controller
     public function index()
     {
         $movies = Movie::with('type')->get();
-        return view('movies.movies', compact('movies'));
+        $genres = Genre::orderBy('name', 'asc')->get();
+        return view('movies.movies', compact('genres', 'movies'));
     }
 
     /**
@@ -41,13 +42,16 @@ class MovieController extends Controller
             'imdb_score' => 'nullable|numeric',
             'trailer_url' => 'nullable|string',
             'type_id' => 'required|exists:types,id',
-            'genre_id' => 'required|exists:genres,id',
+            // 'genre_id' => 'required|exists:genres,id',
             'release_year' => 'required|integer',
             'duration' => 'nullable|integer',
             'total_episode' => 'nullable|integer',
+            'genres' => 'required|array',
+            'genres.*' => 'exists:genres,id',
         ]);
 
-        Movie::create($validated);
+        $movie = Movie::create($validated);
+        $movie->genres()->attach($validated['genres']);
 
         return redirect()->route('movies.index')->with('success', 'Movie berhasil ditambahkan.');
     }
@@ -65,7 +69,7 @@ class MovieController extends Controller
      */
     public function edit(string $id)
     {
-        $movie = Movie::findOrFail($id);
+        $movie = Movie::with('genres')->findOrFail($id);
         $genres = Genre::all();
         $types = Type::all();
 
@@ -90,9 +94,12 @@ class MovieController extends Controller
             'release_year' => 'required|integer',
             'duration' => 'nullable|integer',
             'total_episode' => 'nullable|integer',
+            'genres' => 'required|array',
+            'genres.*' => 'exists:genres,id',
         ]);
 
         $movie->update($validated);
+        $movie->genres()->sync($validated['genres']);
 
         return redirect()->route('movies.index')->with('success', 'Movie berhasil diupdate.');
     }

@@ -27,9 +27,9 @@ class GenreController extends Controller
     public function create()
     {
         //
-           $this->authorizeAdmin();
+        $this->authorizeAdmin();
 
-            return view('genres.create');
+        return view('genres.create');
     }
 
     /**
@@ -57,7 +57,7 @@ class GenreController extends Controller
     public function show(string $id)
     {
         //
-        
+
     }
 
     /**
@@ -78,7 +78,7 @@ class GenreController extends Controller
     public function update(Request $request, string $id)
     {
         //
-           $this->authorizeAdmin();
+        $this->authorizeAdmin();
 
         $request->validate([
             'name' => 'required|string|max:255',
@@ -98,7 +98,7 @@ class GenreController extends Controller
     public function destroy(string $id)
     {
         //
-         $this->authorizeAdmin();
+        $this->authorizeAdmin();
 
         $genre = Genre::findOrFail($id);
         $genre->delete();
@@ -106,7 +106,7 @@ class GenreController extends Controller
         return redirect()->route('genres.index')->with('success', 'Genre deleted successfully.');
     }
 
-      private function authorizeAdmin()
+    private function authorizeAdmin()
     {
         if (!auth()->user() || !auth()->user()->isAdmin()) {
             abort(403, 'Unauthorized');

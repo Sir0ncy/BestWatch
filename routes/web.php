@@ -6,13 +6,16 @@ use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserMovieController;
 use App\Http\Middleware\IsAdmin;
+use App\Models\Movie;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $movies = Movie::with('type')->latest()->take(6)->get();
+    $genres = \App\Models\Genre::orderBy('name')->get();
+    return view('dashboard', compact('genres', 'movies'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

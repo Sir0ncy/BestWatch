@@ -20,4 +20,3 @@ class CreateGenresTable extends Migration
         Schema::dropIfExists('genres');
     }
 }
-//r

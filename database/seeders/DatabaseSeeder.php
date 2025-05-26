@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             AdminUserSeeder::class,
             UserSeeder::class,
+            TypesSeeder::class,
+            GenresSeeder::class,
         ]);
 
         // User::factory(10)->create();

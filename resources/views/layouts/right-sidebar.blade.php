@@ -18,12 +18,11 @@
             <span>Genres</span>
         </div>
 
+        @foreach ($genres as $genre)
         <a href="#" class="flex items-center space-x-2 py-1 group hover:border-r-4 hover:border-r-red-600 hover:font-semibold dark:hover:text-white">
-            Action
+            {{ $genre->name }}
         </a>
-        <a href="#" class="flex items-center space-x-2 py-1 group hover:border-r-4 hover:border-r-red-600 hover:font-semibold dark:hover:text-white">
-            Drama
-        </a>
+        @endforeach
 
         <!-- more genres -->
     </div>
