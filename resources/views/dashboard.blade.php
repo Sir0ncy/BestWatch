@@ -3,10 +3,10 @@
 @section('title', 'BestWatch - Dashboard')
 
 @section('content')
-<div class="flex min-h-screen  2xl:max-w-screen-2xl 2xl:mx-auto 2xl:border-x-2 2xl:border-gray-200 dark:2xl:border-zinc-700 ">
-    <main class=" flex-1 py-10  px-5 sm:px-10 ">
+<div class="flex min-h-screen  2xl:max-w-screen-2xl 2xl:mx-auto 2xl:border-x-2 2xl:border-gray-200 dark:2xl:border-zinc-700 ">
+    <main class=" flex-1 py-10  px-5 sm:px-10 ">
 
-        <header class=" font-bold text-lg flex items-center  gap-x-3 md:hidden mb-12 ">
+        <header class=" font-bold text-lg flex items-center  gap-x-3 md:hidden mb-12 ">
             <span class="mr-6">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-gray-700 dark:text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7" />
@@ -25,7 +25,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                     </svg>
                 </span>
-                <input type="text" class="text-xs ring-1 bg-transparent ring-gray-200 dark:ring-zinc-600 focus:ring-red-300 pl-10 pr-5 text-gray-600 dark:text-white  py-3 rounded-full w-full outline-none focus:ring-1" placeholder="Search ...">
+                <input type="text" class="text-xs ring-1 bg-transparent ring-gray-200 dark:ring-zinc-600 focus:ring-red-300 pl-10 pr-5 text-gray-600 dark:text-white  py-3 rounded-full w-full outline-none focus:ring-1" placeholder="Search ...">
             </div>
         </header>
 
@@ -51,10 +51,12 @@
             </div>
             <div class="mt-4 grid grid-cols-2 gap-y-5 sm:grid-cols-3 gap-x-5">
                 @forelse ($movies as $movie)
-                <div class="flex flex-col h-full rounded-xl overflow-hidden border dark:border-zinc-600">
+                <div class="flex flex-col h-full rounded-xl overflow-hidden border dark:border-zinc-600 shadow-lg">
                     <div class="h-4/5 overflow-hidden">
-                        <img src="{{ $movie->image_url }}" alt="{{ $movie->title }}"
-                            class="object-cover w-full h-full">
+                        <img src="{{ $movie->image_url ?? 'https://placehold.co/300x450/e2e8f0/94a3b8?text=No+Image' }}"
+                             onerror="this.onerror=null;this.src='https://placehold.co/300x450/e2e8f0/94a3b8?text=No+Image';"
+                             alt="{{ $movie->title }}"
+                             class="object-cover w-full h-full">
                     </div>
                     <div class="h-1/5 bg-white dark:bg-zinc-800 dark:text-white px-3 py-2 flex items-center justify-between border-t-2 border-t-red-600">
                         <span class="capitalize font-medium truncate text-gray-800 dark:text-white">{{ $movie->title }}</span>
@@ -72,15 +74,39 @@
                             </svg>
                             <span>{{ $movie->imdb_score }}</span>
                         </div>
+
+                        {{-- >>> KODE TOMBOL FAVORIT DIMULAI DI SINI <<< --}}
+                        @auth
+                            <div class="mt-auto pt-1 w-full"> {{-- mt-auto akan mendorong tombol ke bawah --}}
+                                @if (Auth::user()->hasFavorited($movie))
+                                    {{-- Jika film sudah ada di favorit, tampilkan tombol Hapus --}}
+                                    <form action="{{ route('my-list.remove', $movie->id) }}" method="POST" class="inline-block w-full">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                                class="w-full px-3 py-1.5 text-xs font-medium text-white bg-red-600 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-800 transition ease-in-out duration-150">
+                                            Hapus dari Favorit
+                                        </button>
+                                    </form>
+                                @else
+                                    {{-- Jika film belum ada di favorit, tampilkan tombol Tambah --}}
+                                    <form action="{{ route('my-list.add', $movie->id) }}" method="POST" class="inline-block w-full">
+                                        @csrf
+                                        <button type="submit"
+                                                class="w-full px-3 py-1.5 text-xs font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-800 transition ease-in-out duration-150">
+                                            Tambah ke Favorit
+                                        </button>
+                                    </form>
+                                @endif
+                            </div>
+                        @endauth
+                        {{-- >>> AKHIR DARI KODE TOMBOL FAVORIT <<< --}}
                     </div>
                 </div>
-
-
                 @empty
-                <p class="text-gray-600 dark:text-white">Belum ada movie tersedia.</p>
+                <p class="text-gray-600 dark:text-white col-span-full text-center">Belum ada movie tersedia.</p>
                 @endforelse
             </div>
-
         </section>
     </main>
 </div>
