@@ -90,7 +90,7 @@ class MovieController extends Controller
             'imdb_score' => 'nullable|numeric',
             'trailer_url' => 'nullable|string',
             'type_id' => 'required|exists:types,id',
-            'genre_id' => 'required|exists:genres,id',
+            // 'genre_id' => 'required|exists:genres,id',
             'release_year' => 'required|integer',
             'duration' => 'nullable|integer',
             'total_episode' => 'nullable|integer',

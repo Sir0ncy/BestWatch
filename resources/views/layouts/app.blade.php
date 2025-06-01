@@ -4,8 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>@yield('title', 'Dashboard')</title>
+    <!-- <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" /> -->
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/style.css']) 
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/style.css'])
 </head>
 
 <body class="font-sans text-sm bg-white dark:bg-zinc-900">
@@ -23,6 +24,7 @@
         @include('layouts.right-sidebar')
 
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 </body>
 
 </html>
