@@ -9,7 +9,14 @@
 <img src="{{ $movie->image_url }}" alt="{{ $movie->title }}" class="rounded-lg w-full max-h-[500px] object-cover mb-6">
 
 <div class="space-y-2">
-    <p><strong>Genre:</strong> {{ $movie->genre->name ?? '-' }}</p>
+    <p>
+    <strong>Genre:</strong>
+    @if ($movie->genres && $movie->genres->isNotEmpty())
+        {{ $movie->genres->pluck('name')->join(', ') }}
+    @else
+        -
+    @endif
+</p>
     <p><strong>Type:</strong> {{ $movie->type->name ?? '-' }}</p>
     <p><strong>Release Year:</strong> {{ $movie->release_year }}</p>
     <p><strong>Duration:</strong> {{ $movie->duration }} minutes</p>
