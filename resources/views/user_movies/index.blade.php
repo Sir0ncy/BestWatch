@@ -19,38 +19,42 @@
         </div>
     @endif
 
-    {{-- Variabel yang dikirim dari controller adalah $favoriteMovies --}}
     @if (isset($favoriteMovies) && $favoriteMovies->count() > 0)
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-            {{-- Loop menggunakan $favoriteMovies --}}
-            @foreach ($favoriteMovies as $movie) {{-- Langsung gunakan $movie jika $favoriteMovies berisi objek Movie --}}
+            @foreach ($favoriteMovies as $movie)
                 <div class="bg-white dark:bg-zinc-800 shadow-lg rounded-lg overflow-hidden flex flex-col">
-                    <a href="#"> {{-- Ganti # dengan route('movies.show', $movie->id) jika ada halaman detail film --}}
-                        @if ($movie->image_url)
-                            <img src="{{ $movie->image_url ?? 'https://placehold.co/300x450/e2e8f0/94a3b8?text=No+Image' }}"
-                                 onerror="this.onerror=null;this.src='https://placehold.co/300x450/e2e8f0/94a3b8?text=No+Image';"
-                                 alt="{{ $movie->title }}" class="w-full h-72 object-cover">
-                        @else
-                            <div class="w-full h-72 bg-gray-200 dark:bg-zinc-700 flex items-center justify-center">
-                                <span class="text-gray-500 dark:text-gray-400">No Image</span>
-                            </div>
-                        @endif
-                    </a>
-                    <div class="p-4 flex flex-col flex-grow">
-                        <h3 class="text-md font-semibold text-gray-800 dark:text-white mb-1 truncate" title="{{ $movie->title }}">
-                            {{ $movie->title }}
-                        </h3>
-                        <p class="text-xs text-gray-600 dark:text-gray-400 mb-2 flex-grow">
-                            Tahun: {{ $movie->year ?? 'N/A' }} | Rating: {{ $movie->rating ?? 'N/A' }}
-                        </p>
-                        {{-- Tombol untuk menghapus dari My List --}}
-                        <form action="{{ route('my-list.remove', $movie->id) }}" method="POST" class="mt-auto">
+                    {{-- Kontainer untuk gambar dan tombol favorit yang diposisikan absolut --}}
+                    <div class="relative group">
+                        <a href="#"> {{-- Ganti # dengan route('movies.show', $movie->id) jika ada halaman detail film --}}
+                            @if ($movie->image_url)
+                                <img src="{{ $movie->image_url ?? 'https://placehold.co/300x450/e2e8f0/94a3b8?text=No+Image' }}"
+                                     onerror="this.onerror=null;this.src='https://placehold.co/300x450/e2e8f0/94a3b8?text=No+Image';"
+                                     alt="{{ $movie->title }}" class="w-full h-72 object-cover transition-transform duration-300 ease-in-out group-hover:scale-105">
+                            @else
+                                <div class="w-full h-72 bg-gray-200 dark:bg-zinc-700 flex items-center justify-center">
+                                    <span class="text-gray-500 dark:text-gray-400">No Image</span>
+                                </div>
+                            @endif
+                        </a>
+                        {{-- Tombol Hapus Favorit (Ikon Bintang Terisi) - Diposisikan di atas gambar --}}
+                        <form action="{{ route('my-list.remove', $movie->id) }}" method="POST" class="absolute top-2 right-2 z-10">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="w-full px-3 py-2 text-xs bg-red-600 text-white rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-800">
-                                Hapus dari Favorit
+                            <button type="submit" class="p-1.5 bg-black bg-opacity-40 rounded-full text-yellow-400 hover:text-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-opacity-50" title="Hapus dari Favorit">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                                  <path fill-rule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z" clip-rule="evenodd" />
+                                </svg>
                             </button>
                         </form>
+                    </div>
+
+                    <div class="p-4 flex flex-col flex-grow">
+                        <h3 class="text-md font-semibold text-gray-800 dark:text-white truncate" title="{{ $movie->title }}">
+                            {{ $movie->title }}
+                        </h3>
+                        <p class="text-xs text-gray-600 dark:text-gray-400 mt-1 flex-grow">
+                            Tahun: {{ $movie->year ?? 'N/A' }} | Rating: {{ $movie->rating ?? 'N/A' }}
+                        </p>
                     </div>
                 </div>
             @endforeach
