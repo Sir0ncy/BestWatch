@@ -30,7 +30,7 @@
             {{-- Logo Anda --}}
             <a href="{{ url('/') }}" class="flex items-center gap-x-2">
                 {{-- Pastikan path dan nama file logo ini benar --}}
-                <img src="{{ asset('img/LOGO BESTWATCH.png') }}" alt="BestWatch Logo" class="h-8 sm:h-9 w-auto">
+                <img src="{{ asset('gambar/logo_bestwatch_W.png') }}" alt="BestWatch Logo" class="h-8 sm:h-9 w-auto">
                 <span class="font-bold text-xl sm:text-2xl text-gray-800 dark:text-white">BestWatch<span class="text-red-600">.</span></span>
             </a>
             {{-- Tombol Aksi (misal: Login, Daftar) --}}
