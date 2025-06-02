@@ -1,1 +1,1 @@
-<img src="{{ asset('gambar/logo_bestwatch_utuh.png') }}" alt="BestWatch Logo" class="h-36 w-36 object-contain">
+<img src="{{ asset('gambar/logo_bestwatch_utuh.png') }}" alt="BestWatch Logo" class="h-20 w-50 object-contain">

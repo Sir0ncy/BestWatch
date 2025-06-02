@@ -2,8 +2,7 @@
 <aside class="w-1/6 py-10 pl-10 min-w-min border-r border-gray-300 dark:border-zinc-700 hidden md:block">
 
     <div class="font-bold text-lg flex items-center gap-x-3">
-        <img src="{{ asset('gambar/logo_bestwatch_W.png') }}" alt="BestWatch Logo" class="h-8 w-8 object-contain">
-        <div class="tracking-wide dark:text-white">BestWatch<span class="text-red-600">.</span></div>
+        <img src="{{ asset('gambar/logo_bestwatch_utuh.png') }}" alt="BestWatch Logo" class="h-16 w-50 object-contain">
     </div>
 
     <!-- Menu -->
