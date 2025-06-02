@@ -1,5 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" :class="isDark ? 'dark' : 'light'" x-data="{ isDark: false }">
+<html lang="en"
+      x-data="{ isDark: JSON.parse(localStorage.getItem('isDark')) || false }"
+      x-init="$watch('isDark', val => localStorage.setItem('isDark', JSON.stringify(val)))"
+      :class="{ 'dark': isDark }">
 
 <head>
     <meta charset="UTF-8">
@@ -7,6 +10,10 @@
     <!-- <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" /> -->
     @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/style.css']) 
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <style>
+        [x-cloak] { display: none !important; }
+    </style>
 </head>
 
 <body class="font-sans text-sm bg-white dark:bg-zinc-900">

@@ -1,15 +1,16 @@
 <?php
 
+use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\GenreController;
-use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SettingController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserMovieController;
-use App\Http\Controllers\UserController;
-use App\Http\Middleware\IsAdmin;
-use App\Models\Movie; // Mungkin tidak perlu di sini jika query hanya di controller
 use App\Models\Genre; // Mungkin tidak perlu di sini jika query hanya di controller
+use App\Models\Movie; // Mungkin tidak perlu di sini jika query hanya di controller
 
 Route::get('/', function () {
     $genres = \App\Models\Genre::orderBy('name')->get(); // Gunakan FQCN atau pastikan use App\Models\Genre ada
@@ -44,5 +45,9 @@ Route::middleware(['auth', IsAdmin::class])->group(function () {
 });
 
 Route::get('/movies/{movie}', [MovieController::class, 'show'])->name('movies.show');
+
+Route::get('/setting', [SettingController::class, 'index'])->name('setting');
+Route::post('/setting', [SettingController::class, 'update'])->name('setting.update');
+Route::post('/setting/delete-account', [SettingController::class, 'destroy'])->name('setting.destroy')->middleware('auth');
 
 require __DIR__.'/auth.php';

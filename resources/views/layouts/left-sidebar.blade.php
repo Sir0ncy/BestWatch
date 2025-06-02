@@ -63,8 +63,8 @@
 
 
         <div class="mt-8 text-gray-400/70 font-medium uppercase">General</div>
-        <a class="flex items-center space-x-2 py-1 group hover:border-r-4 hover:border-r-red-600 hover:font-semibold dark:hover:text-white"
-            href="#">
+        <a class="flex items-center space-x-2 py-1 {{ request()->routeIs('setting') ? 'dark:text-white font-semibold border-r-4 border-r-red-600 pr-20' : 'group hover:border-r-4 hover:border-r-red-600 hover:font-semibold dark:hover:text-white' }}"
+            href="{{ route('setting') }}">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:stroke-red-600" fill="none"
                 viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round"
