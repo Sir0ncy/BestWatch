@@ -20,10 +20,6 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-// Rute detail film (bisa diakses publik atau pengguna terautentikasi tergantung penempatan)
-// Dengan definisi ini, rute ini bersifat PUBLIK
-Route::get('/movies/{movie}', [MovieController::class, 'show'])->name('movies.show');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -46,5 +42,7 @@ Route::middleware(['auth', IsAdmin::class])->group(function () {
     Route::resource('/genres', GenreController::class);
     Route::resource('/users', UserController::class);
 });
+
+Route::get('/movies/{movie}', [MovieController::class, 'show'])->name('movies.show');
 
 require __DIR__.'/auth.php';
