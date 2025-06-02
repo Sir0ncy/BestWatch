@@ -51,14 +51,12 @@
             <div x-data="{ showModal: false }" class="bg-white dark:bg-zinc-800 shadow rounded-lg p-6">
                 <h3 class="text-lg font-semibold text-red-600 mb-4">Danger Zone</h3>
 
-                <button @click="showModal = true"
-                    class="inline-flex items-center px-5 py-2 text-white bg-red-600 hover:bg-red-700 rounded-md">
-                    Hapus Akun
-                </button>
-
                 <!-- Modal konfirmasi -->
                 <div x-data="{ showModal: false }">
-                    <button @click="showModal = true" class="...">Hapus Akun</button>
+                    <button @click="showModal = true"
+                        class="inline-flex items-center px-5 py-2 text-white bg-red-600 hover:bg-red-700 rounded-md">
+                        Hapus Akun
+                    </button>
 
                     <!-- Overlay + Modal -->
                     <div x-show="showModal" x-cloak
