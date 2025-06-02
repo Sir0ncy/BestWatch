@@ -6,14 +6,12 @@
     {{-- Judul Halaman dan Tombol Tambah --}}
     <div class="flex justify-between items-center mb-6">
         <h1 class="text-2xl font-semibold text-gray-800 dark:text-gray-200">Daftar Pengguna</h1>
-        {{-- Sesuaikan nama rute jika Anda menggunakan prefix 'admin.' pada grup rute resource user --}}
         {{-- Contoh: route('admin.users.create') --}}
         <a href="{{ route('users.create') }}" class="px-4 py-2 bg-green-500 text-white text-sm font-medium rounded-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-900">
             Tambah Pengguna Baru
         </a>
     </div>
 
-    {{-- Notifikasi Sukses/Error --}}
     @if (session('success'))
         <div class="mb-4 p-4 bg-green-100 dark:bg-green-700 border border-green-400 dark:border-green-600 text-green-700 dark:text-green-100 rounded-md" role="alert">
             {{ session('success') }}
@@ -25,7 +23,6 @@
         </div>
     @endif
 
-    {{-- Tabel Daftar User --}}
     <div class="bg-white dark:bg-zinc-800 shadow-sm sm:rounded-lg overflow-x-auto">
         <table class="min-w-full divide-y divide-gray-200 dark:divide-zinc-700">
             <thead class="bg-gray-50 dark:bg-zinc-700">

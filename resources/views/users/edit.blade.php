@@ -7,7 +7,7 @@
 
     @if ($errors->any())
         <div class="mb-4 p-4 bg-red-100 dark:bg-red-700 border border-red-400 dark:border-red-600 text-red-700 dark:text-red-100 rounded-md">
-            <p class="font-bold">Oops! Ada kesalahan input:</p>
+            <p class="font-bold">kesalahan input:</p>
             <ul class="list-disc list-inside ml-4">
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -16,7 +16,6 @@
         </div>
     @endif
 
-    {{-- Sesuaikan nama rute jika menggunakan prefix 'admin.' --}}
     <form action="{{ route('users.update', $user->id) }}" method="POST" class="bg-white dark:bg-zinc-800 shadow-sm sm:rounded-lg p-6 max-w-lg">
         @csrf
         @method('PUT') {{-- atau PATCH --}}
@@ -62,7 +61,6 @@
             <button type="submit" class="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-zinc-900">
                 Update Pengguna
             </button>
-            {{-- Sesuaikan nama rute jika menggunakan prefix 'admin.' --}}
             <a href="{{ route('users.index') }}" class="text-sm text-gray-600 dark:text-gray-400 hover:underline">Batal</a>
         </div>
     </form>

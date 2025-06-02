@@ -16,7 +16,6 @@
         </div>
     @endif
 
-    {{-- Sesuaikan nama rute jika menggunakan prefix 'admin.' --}}
     <form action="{{ route('users.store') }}" method="POST" class="bg-white dark:bg-zinc-800 shadow-sm sm:rounded-lg p-6 max-w-lg">
         @csrf
         <div class="mb-4">
@@ -53,7 +52,6 @@
             <label for="role_id" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">Role ID <span class="text-red-500">*</span></label>
             <input type="number" name="role_id" id="role_id" value="{{ old('role_id', 2) }}" placeholder="Misal: 1 untuk Admin, 2 untuk User" required
                    class="w-full px-3 py-2 border border-gray-300 dark:border-zinc-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 dark:bg-zinc-700 dark:text-white">
-             {{-- Idealnya ini adalah dropdown/select jika Anda memiliki tabel roles --}}
         </div>
 
         <div class="flex items-center gap-x-4 mt-6">
