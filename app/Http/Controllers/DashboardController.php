@@ -25,7 +25,16 @@ class DashboardController extends Controller
             $query->where('type_id', $request->type);
         }
 
-        $movies = $query->paginate(6)->withQueryString();
+        // 🔍 Filter berdasarkan search keyword
+        if ($request->has('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('title', 'like', '%' . $search . '%')
+                    ->orWhere('description', 'like', '%' . $search . '%');
+            });
+        }
+
+        $movies = $query->paginate(6)->withQueryString(); // withQueryString agar filter tetap tersimpan saat pindah halaman
         $genres = Genre::orderBy('name')->get();
         $types = Type::orderBy('name')->get();
 
