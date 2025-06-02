@@ -17,15 +17,20 @@
             </svg>
             <span>Genres</span>
         </div>
+        
+        <a href="{{ route('dashboard') }}"
+            class="flex items-center space-x-2 py-1 group 
+        {{ request('genre') == null ? 'border-r-4 border-r-red-600 font-semibold dark:text-white text-gray-700' : 'text-gray-500 hover:border-r-4 hover:border-r-red-600 hover:font-semibold dark:hover:text-white' }}">
+            All
+        </a>
 
         @foreach ($genres as $genre)
-        <a href="#" class="flex items-center space-x-2 py-1 group hover:border-r-4 hover:border-r-red-600 hover:font-semibold dark:hover:text-white">
+        <a href="{{ route('dashboard', ['genre' => $genre->id]) }}"
+            class="flex items-center space-x-2 py-1 group 
+            {{ request('genre') == $genre->id ? 'border-r-4 border-r-red-600 font-semibold dark:text-white text-gray-700' : 'text-gray-500 hover:border-r-4 hover:border-r-red-600 hover:font-semibold dark:hover:text-white' }}">
             {{ $genre->name }}
         </a>
         @endforeach
-
-        <!-- more genres -->
     </div>
-
-
-</aside><!-- /Right Sidebar -->
+</aside>
+<!-- /Right Sidebar -->

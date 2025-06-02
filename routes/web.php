@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\MovieController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserMovieController;
@@ -15,11 +16,16 @@ Route::get('/', function () {
     return view('welcome', compact('genres'));
 });
 
-Route::get('/dashboard', function () {
-    $movies = Movie::with('type')->latest()->take(6)->get();
-    $genres = \App\Models\Genre::orderBy('name')->get();
-    return view('dashboard', compact('genres', 'movies'));
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     $movies = Movie::with('type')->latest()->take(6)->get();
+//     $genres = \App\Models\Genre::orderBy('name')->get();
+//     return view('dashboard', compact('genres', 'movies'));
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
