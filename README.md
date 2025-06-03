@@ -5,18 +5,6 @@ BestWatch is a web application built with Laravel and Tailwind CSS that helps us
 ## Features
 
 - Browse popular movies, TV series, and animes
-- Dashboard with top stars and similar movies
-- Favorites and recommendations sidebar
-- Responsive layout with dark mode
+- Role based web app, including Admin dashboard for managing movies
+- modern layout with dark mode
 - Built with Laravel, Blade templates, Tailwind CSS, and Vite
-
-Test Heawdaw
-Test heheheawdaw
-tesss
-tes satu dua
-tes juga
-TESTR
-TESTR
-TESTR
-TESTR
-TESTR

@@ -3,9 +3,14 @@
 @section('title', 'Detail - ' . $movie->title)
 
 @section('content')
-    <div class="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-gray-800 dark:text-white">
+    <div class="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8 text-gray-800 dark:text-white">
+<div class="flex  md:flex-row gap-4 lg:gap-6 mb-8">
+        <div class="w-1/4 flex-shrink-0">
+            <img src="{{ $movie->image_url ?? 'https://placehold.co/300x450/e2e8f0/cbd5e0?text=No+Image' }}"
+                alt="Poster {{ $movie->title }}" class="rounded-lg shadow-md h-auto object-cover aspect-[2/3]"
+                onerror="this.onerror=null; this.src='https://placehold.co/300x450/e2e8f0/cbd5e0?text=No+Image';">
+        </div>
 
-        {{-- Trailer Lebih Tinggi --}}
         @if ($movie->trailer_url)
             @php
                 $trailerUrl = $movie->trailer_url;
@@ -16,7 +21,8 @@
                 }
                 $trailerUrl = strtok($trailerUrl, '?');
             @endphp
-            <div class="w-full h-[450px] mb-8 rounded-xl overflow-hidden shadow-xl bg-black">
+
+            <div class="w-3/4 h-[250px] md:h-[300px] lg:h-[320px] mb-8 rounded-xl overflow-hidden shadow-xl bg-black">
                 <iframe src="{{ $trailerUrl }}" title="Trailer {{ $movie->title }}" frameborder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowfullscreen class="w-full h-full">
@@ -28,17 +34,9 @@
                 <p class="text-gray-500 dark:text-gray-400">Trailer tidak tersedia.</p>
             </div>
         @endif
+</div>
 
-        {{-- Poster + Info --}}
         <div class="flex flex-col md:flex-row items-start gap-6 lg:gap-10 mb-6">
-
-            {{-- Poster 1/4 --}}
-            <div class="w-1/4 flex-shrink-0">
-                <img src="{{ $movie->image_url ?? 'https://placehold.co/300x450/e2e8f0/cbd5e0?text=No+Image' }}"
-                    alt="Poster {{ $movie->title }}" class="rounded-lg shadow-md h-auto object-cover aspect-[2/3]"
-                    onerror="this.onerror=null; this.src='https://placehold.co/300x450/e2e8f0/cbd5e0?text=No+Image';">
-            </div>
-
             {{-- Info Film --}}
             <div class="flex-1">
                 <h1 class="text-3xl sm:text-4xl font-bold mb-2">{{ $movie->title }}</h1>
