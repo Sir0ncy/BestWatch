@@ -1,8 +1,7 @@
-{{-- resources/views/welcome.blade.php --}}
 @extends('layouts.landing')
 
 @section('title', 'BestWatch - Katalog Film, Anime, & Series Terlengkap')
-@section('description', 'Jelajahi ribuan judul film, anime, dan serial TV. Dapatkan informasi detail, rating, dan kelola daftar tontonan pribadi Anda di BestWatch.')
+@section('description', 'Jelajahi judul film, anime, dan serial TV. Dapatkan informasi detail, rating, dan kelola daftar tontonan pribadi Anda di BestWatch.')
 
 @section('content')
 
@@ -81,22 +80,4 @@
         </div>
     </div>
 </section> --}}
-
-
-{{-- 4. Call to Action (CTA) Section - Penguat --}}
-<section class="py-16 md:py-24 bg-red-600 dark:bg-red-700">
-    <div class="max-w-3xl mx-auto text-center px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl sm:text-4xl font-bold text-white mb-6">
-            Siap Menjelajahi Dunia Hiburan?
-        </h2>
-        <p class="text-lg text-red-100 dark:text-red-200 mb-8">
-            Buat akun gratis untuk menyimpan preferensi, memberi rating, dan membangun daftar tontonan impian Anda.
-        </p>
-        <a href="{{ route('register') }}"
-           class="bg-white hover:bg-gray-100 text-red-600 font-semibold py-3 px-10 rounded-lg text-lg inline-block transition duration-300 ease-in-out transform hover:scale-105 shadow-lg">
-            Buat Akun Sekarang
-        </a>
-    </div>
-</section>
-
 @endsection
