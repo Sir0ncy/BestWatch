@@ -17,7 +17,7 @@
         </p>
         <div class="space-x-0 space-y-4 sm:space-y-0 sm:space-x-4">
             <a href="{{ route('register') }}" {{-- Atau bisa juga ke halaman browse jika tidak wajib login --}}
-               class="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-8 rounded-lg text-lg inline-block transition duration-300 ease-in-out transform hover:scale-105">
+                class="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-8 rounded-lg text-lg inline-block transition duration-300 ease-in-out transform hover:scale-105">
                 Buat Akun & Mulai Kelola
             </a>
             {{-- Anda bisa menambahkan tombol lain, misalnya untuk langsung browse katalog --}}
@@ -37,7 +37,7 @@
                 BestWatch menyediakan semua yang Anda butuhkan untuk menjadi penikmat film dan series yang terinformasi.
             </p>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12"> {{-- Adjusted grid-cols-3 to grid-cols-2 --}}
             {{-- Fitur 1 --}}
             <div class="text-center p-6 bg-gray-50 dark:bg-zinc-800 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300">
                 <div class="flex items-center justify-center h-16 w-16 rounded-full bg-red-500 text-white mx-auto mb-4">
@@ -60,17 +60,7 @@
                     Dapatkan sinopsis, genre, poster, tahun rilis, skor IMDb, dan lainnya untuk setiap judul.
                 </p>
             </div>
-            {{-- Fitur 3 --}}
-            <div class="text-center p-6 bg-gray-50 dark:bg-zinc-800 rounded-xl shadow-lg transform hover:scale-105 transition-transform duration-300">
-                <div class="flex items-center justify-center h-16 w-16 rounded-full bg-red-500 text-white mx-auto mb-4">
-                    {{-- Ikon: Daftar/List, Bookmark, atau Kalender --}}
-                    <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
-                </div>
-                <h3 class="text-xl font-semibold text-gray-800 dark:text-white mb-2">Daftar Tontonan Pribadi</h3>
-                <p class="text-gray-600 dark:text-gray-400 text-sm">
-                    Buat dan kelola daftar film yang sudah, sedang, atau akan Anda tonton. Beri rating dan bagikan opinimu!
-                </p>
-            </div>
+            {{-- Fitur 3 (Daftar Tontonan Pribadi) telah dihapus --}}
         </div>
     </div>
 </section>
